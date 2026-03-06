@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # Configuration
-api_key = os.environ.get("GEMINI_API_KEY")
+api_key = os.environ.get("GEMINI_OSI")
 if not api_key:
     raise ValueError("La clé API n'est pas trouvée dans les variables d'environnement")
 
