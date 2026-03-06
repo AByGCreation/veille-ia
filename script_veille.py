@@ -2,65 +2,79 @@ import google.generativeai as genai
 import os
 from datetime import datetime
 
-# 1. Configuration avec la nouvelle bibliothèque 2026
-api_key = os.environ.get("GEMINI_OSI")
+# Configuration
+api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("La clé API n'est pas trouvée dans les variables d'environnement")
+
 genai.configure(api_key=api_key)
 
-# 2. Vos sources
+# --- BLOC DIAGNOSTIC ---
+print("🔍 ANALYSE DES MODÈLES DISPONIBLES POUR VOTRE CLÉ...")
+available_models = []
+try:
+    for m in genai.list_models():
+        if 'generateContent' in m.supported_generation_methods:
+            # On nettoie le nom (enlève 'models/') pour l'affichage
+            clean_name = m.name.replace('models/', '')
+            print(f" - ✅ Disponible : {clean_name}")
+            available_models.append(clean_name)
+except Exception as e:
+    print(f"⚠️ Impossible de lister les modèles : {e}")
+
+# --- SÉLECTION INTELLIGENTE ---
+# On essaie les modèles dans l'ordre de préférence
+model_preference = ['gemini-1.5-flash', 'gemini-1.5-flash-001', 'gemini-pro', 'gemini-1.0-pro']
+selected_model = 'gemini-pro' # Fallback par défaut (le plus vieux et le plus stable)
+
+for m in model_preference:
+    if m in available_models:
+        selected_model = m
+        break
+
+print(f"🤖 MODÈLE CHOISI : {selected_model}")
+# -----------------------
+
 sources_context = """
-- Reuters & Le Monde : Suivi des régulations IA et procès Grok en France.
-- LinkedIn & X : Tendance sur les agents autonomes et le "Vibe Coding".
-- HuggingFace : Sorties des modèles GLM-4.7 et MiniMax 2.1.
-- Marché : Acquisitions par NVIDIA, Alphabet et Meta.
+- Reuters & Le Monde : Suivi des régulations IA.
+- LinkedIn & X : Vibe Coding et Agents.
+- HuggingFace : Modèles GLM-4.7.
+- Marché : NVIDIA, Alphabet, Meta.
 """
 
-# 3. Le Prompt
-prompt = f"""Génère UNIQUEMENT le code HTML contenu à l'intérieur de la balise <main> pour un tableau de bord de veille IA.
-Utilise Tailwind CSS avec 3 colonnes, des cartes avec la classe 'neo-card' (bordure noire 2px, ombre portée).
-Thèmes : {sources_context}. Date : {datetime.now().strftime('%d/%m/%Y')}.
-"""
+prompt = f"Génère UNIQUEMENT le code HTML du <body> (sans balise body, juste le contenu div/main) pour un tableau de bord veille IA. Style Tailwind, 3 cartes 'neo-card'. Thèmes: {sources_context}. Date: {datetime.now().strftime('%d/%m/%Y')}."
 
 def main():
     try:
-        # Utilisation du modèle 'gemini-2.0-flash' (standard en 2026)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # Initialisation du modèle choisi dynamiquement
+        model = genai.GenerativeModel(selected_model)
         
         response = model.generate_content(prompt)
-        new_content = response.text
+        new_content = response.text.replace("```html", "").replace("```", "").strip()
 
-        # Nettoyage
-        new_content = new_content.replace("```html", "").replace("```", "").strip()
-
-        full_html = f"""
-<!DOCTYPE html>
+        full_html = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veille IA </title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <style>
-        .neo-card {{ border: 2px solid #000; box-shadow: 5px 5px 0px #000; transition: all 0.2s; }}
-        .neo-card:hover {{ transform: translate(-2px, -2px); box-shadow: 7px 7px 0px #000; }}
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>.neo-card {{ border: 2px solid #000; box-shadow: 5px 5px 0px #000; }}</style>
 </head>
-<body class="bg-gray-50 text-gray-900 p-6">
-    <header class="max-w-6xl mx-auto mb-12">
-        <h1 class="text-4xl font-black uppercase tracking-tighter border-b-4 border-black inline-block mb-4">🤖 Veille IA 2026</h1>
-        <p class="text-lg text-gray-600">Dernière mise à jour : {datetime.now().strftime('%d/%m/%Y')}</p>
-    </header>
-    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<body class="bg-gray-50 p-6">
+    <header class="mb-8"><h1 class="text-3xl font-black border-b-4 border-black inline-block">VEILLE IA AUTO</h1></header>
+    <main class="grid md:grid-cols-3 gap-6">
         {new_content}
     </main>
-</body>
-</html>
-"""
+</body></html>"""
+        
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(full_html)
-        print("✅ index.html mis à jour !")
+        print("✅ SUCCÈS : Site mis à jour !")
 
     except Exception as e:
-        print(f"❌ Erreur : {e}")
+        print(f"❌ ÉCHEC FINAL : {e}")
+        # En cas d'échec total, on ne plante pas le script pour voir les logs
+        pass
 
 if __name__ == "__main__":
     main()
