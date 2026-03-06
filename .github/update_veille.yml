@@ -1,0 +1,37 @@
+name: Mise à jour Veille IA Hebdomadaire
+
+on:
+  schedule:
+    # S'exécute tous les lundis à 08h00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Permet de lancer la mise à jour manuellement pour tester
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Installer les dépendances
+        run: |
+          pip install google-generativeai
+
+      - name: Exécuter le script de veille Gemini
+        env:
+          GEMINI_OSI: ${{ secrets.GEMINI_OSI }}
+        run: python script_veille.py
+
+      - name: Sauvegarder et publier les changements
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add index.html
+          git commit -m "Mise à jour automatique de la veille - $(date +'%d/%m/%Y')" || echo "Pas de changements"
+          git push
