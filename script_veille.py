@@ -24,7 +24,7 @@ except Exception as e:
 
 # --- SÉLECTION INTELLIGENTE ---
 # On essaie les modèles dans l'ordre de préférence
-model_preference = ['gemini-1.5-flash', 'gemini-1.5-flash-001', 'gemini-2.5-pro', 'gemini-1.0-pro']
+model_preference = ['gemini-1.5-flash', 'gemini-1.5-flash-001', 'gemini-2.5-flash', 'gemini-1.0-pro']
 selected_model = 'gemini-pro' # Fallback par défaut (le plus vieux et le plus stable)
 
 for m in model_preference:
