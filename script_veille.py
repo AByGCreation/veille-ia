@@ -19,13 +19,12 @@ prompt = f"Génère UNIQUEMENT le code HTML contenu à l'intérieur de la balise
 def main():
     try:
         # Utilisation du modèle 'gemini-2.0-flash' (standard en 2026)
-        response = client.models.generate_content(
-            model='gemini-1.5-flash', 
-            contents=prompt
-        )
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        
+        response = model.generate_content(prompt)
         new_content = response.text
 
-        # Nettoyage si l'IA ajoute des balises ```html
+        # Nettoyage
         new_content = new_content.replace("```html", "").replace("```", "").strip()
 
         full_html = f"""
