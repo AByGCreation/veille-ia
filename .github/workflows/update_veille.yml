@@ -17,11 +17,11 @@ jobs:
       - name: Installer Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Installer les dépendances
         run: |
-          pip install google-generativeai
+          pip install google-genai
 
       - name: Exécuter le script de veille Gemini
         env:

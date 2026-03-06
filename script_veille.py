@@ -1,44 +1,33 @@
-import google.generativeai as genai
+from google import genai
 import os
 from datetime import datetime
 
-# 1. Configuration de l'IA
-# La clé est récupérée automatiquement depuis les secrets GitHub
-api_key = os.environ.get("GEMINI_OSI")
-genai.configure(api_key=api_key)
-model = genai.GenerativeModel('gemini-1.5-flash')
+# 1. Configuration avec la nouvelle bibliothèque 2026
+client = genai.Client(api_key=os.environ.get("GEMINI_OSI"))
 
-# 2. Vos sources (Exemples basés sur vos documents)
+# 2. Vos sources
 sources_context = """
 - Reuters & Le Monde : Suivi des régulations IA et procès Grok en France.
 - LinkedIn & X : Tendance sur les agents autonomes et le "Vibe Coding".
-- HuggingFace : Sorties des modèles 
-- Marché : Acquisitions par NVIDIA, Alphabet et Meta (Infrastructure).
+- HuggingFace : Sorties des modèles GLM-4.7 et MiniMax 2.1.
+- Marché : Acquisitions par NVIDIA, Alphabet et Meta.
 """
 
-# 3. Le Prompt "Vibe Coding"
-# On demande à Gemini de générer directement le contenu HTML final
-prompt = f"""
-Tu es un expert en veille stratégique IA . 
-Analyse ces thématiques : {sources_context}
-
-Génère UNIQUEMENT le code HTML contenu à l'intérieur de la balise <main> pour un tableau de bord.
-Utilise le style Tailwind CSS suivant :
-- 3 colonnes (Gouvernance, Marché, Tech).
-- Des cartes avec la classe "neo-card" (bordure noire 2px, ombre portée).
-- Utilise des emojis et des titres percutants.
-- Ajoute la date du jour ({datetime.now().strftime('%d/%m/%Y')}) discrètement.
-
-Ne mets pas de balises ```html ou d'explications, juste le code HTML brut.
-"""
+# 3. Le Prompt
+prompt = f"Génère UNIQUEMENT le code HTML contenu à l'intérieur de la balise <main> pour un tableau de bord de veille IA. Utilise Tailwind CSS avec 3 colonnes, des cartes avec la classe 'neo-card' (bordure noire 2px, ombre portée). Thèmes : {sources_context}. Date : {datetime.now().strftime('%d/%m/%Y')}."
 
 def main():
     try:
-        # Génération du contenu via Gemini
-        response = model.generate_content(prompt)
+        # Utilisation du modèle 'gemini-2.0-flash' (standard en 2026)
+        response = client.models.generate_content(
+            model='gemini-2.0-flash', 
+            contents=prompt
+        )
         new_content = response.text
 
-        # Lecture du template de base (ou reconstruction du fichier complet)
+        # Nettoyage si l'IA ajoute des balises ```html
+        new_content = new_content.replace("```html", "").replace("```", "").strip()
+
         full_html = f"""
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,21 +46,18 @@ def main():
         <h1 class="text-4xl font-black uppercase tracking-tighter border-b-4 border-black inline-block mb-4">🤖 Veille IA 2026</h1>
         <p class="text-lg text-gray-600">Dernière mise à jour : {datetime.now().strftime('%d/%m/%Y')}</p>
     </header>
-
     <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {new_content}
     </main>
 </body>
 </html>
 """
-        
-        # Écriture du fichier final
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(full_html)
-        print("✅ index.html a été mis à jour avec succès !")
+        print("✅ index.html mis à jour !")
 
     except Exception as e:
-        print(f"❌ Erreur lors de la génération : {e}")
+        print(f"❌ Erreur : {e}")
 
 if __name__ == "__main__":
     main()
