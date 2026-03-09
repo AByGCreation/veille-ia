@@ -9,127 +9,80 @@
 <body class="bg-gray-50 p-6">
     <header class="mb-8"><h1 class="text-3xl font-black border-b-4 border-black inline-block">VEILLE IA AUTO</h1></header>
     <main class="grid md:grid-cols-3 gap-6">
-        <main class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-4 sm:p-6 lg:p-8 font-sans">
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <header class="mb-10 text-center">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-700 dark:text-blue-400 mb-2">Tableau de Bord Veille IA</h1>
-            <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300">Date: 06/03/2026</p>
-        </header>
+        <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8 font-sans text-gray-800">
+    <header class="mb-10 text-center">
+        <h1 class="text-5xl font-extrabold text-gray-900 drop-shadow-sm">Tableau de Bord Veille IA</h1>
+        <p class="mt-4 text-xl text-gray-600">État de l'art et tendances au <span class="font-semibold text-indigo-600">09/03/2026</span></p>
+    </header>
 
-        <!-- Cartes 'Neo-Card' -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-
-            <!-- Neo-Card 1: Reuters & Le Monde - Suivi des régulations IA -->
-            <div class="bg-white dark:bg-gray-800 shadow-[8px_8px_16px_rgba(0,0,0,0.05),-8px_-8px_16px_rgba(255,255,255,0.8)] dark:shadow-[8px_8px_16px_#1a202c,-8px_-8px_16px_#2c323e] rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
-                        <span class="mr-3 text-blue-500 dark:text-blue-400">🏛️</span> Suivi des régulations IA
-                    </h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
-                        Analyses des dernières propositions législatives et directives émanant de sources comme <strong class="font-semibold">Reuters</strong> et <strong class="font-semibold">Le Monde</strong>.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                        <li>Débats sur l'AI Act européen (mise en œuvre).</li>
-                        <li>Projets de lois aux États-Unis sur la transparence.</li>
-                        <li>Positionnement de la Chine sur l'IA générative.</li>
-                        <li>Impact sur l'éthique et la sécurité des données.</li>
-                    </ul>
+    <main class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Neo-Card 1: Régulations IA -->
+            <div class="neo-card bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:border-indigo-200 border border-transparent">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl mr-3 text-indigo-500">⚖️</span>
+                    <h2 class="text-2xl font-bold text-gray-900">Régulations IA</h2>
                 </div>
-                <div class="mt-6 text-right text-sm text-gray-500 dark:text-gray-400">Dernière mise à jour: 05/03/2026</div>
+                <p class="text-gray-600 text-lg mb-4">
+                    Suivi des cadres législatifs et éthiques en évolution constante à l'échelle mondiale.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                    <li><strong class="text-indigo-600">Reuters & Le Monde:</strong> Analyse approfondie du AI Act européen, dernières amendements.</li>
+                    <li><strong class="text-indigo-600">USA & Chine:</strong> Comparaison des approches réglementaires et des initiatives nationales.</li>
+                    <li><strong class="text-indigo-600">Débats Éthiques:</strong> Avancées sur la gouvernance de l'IA, la transparence et les biais.</li>
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500">
+                    <p>Sources principales: Reuters, Le Monde</p>
+                    <p>Dernière veille: 08/03/2026</p>
+                </div>
             </div>
 
-            <!-- Neo-Card 2: LinkedIn & X - Vibe Coding et Agents -->
-            <div class="bg-white dark:bg-gray-800 shadow-[8px_8px_16px_rgba(0,0,0,0.05),-8px_-8px_16px_rgba(255,255,255,0.8)] dark:shadow-[8px_8px_16px_#1a202c,-8px_-8px_16px_#2c323e] rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
-                        <span class="mr-3 text-purple-500 dark:text-purple-400">🤖</span> Vibe Coding et Agents
-                    </h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
-                        Tendances et discussions sur <strong class="font-semibold">LinkedIn</strong> et <strong class="font-semibold">X (Twitter)</strong> autour de la "Vibe Coding" et des architectures d'agents autonomes.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                        <li>Nouveaux frameworks d'agents multi-IA.</li>
-                        <li>Outils d'amélioration de la productivité des développeurs (IA-assisted coding).</li>
-                        <li>Débats sur la créativité et l'IA en programmation.</li>
-                        <li>Cas d'usage des agents dans l'automatisation.</li>
-                    </ul>
+            <!-- Neo-Card 2: Vibe Coding et Agents -->
+            <div class="neo-card bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-200 border border-transparent">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl mr-3 text-blue-500">🤖</span>
+                    <h2 class="text-2xl font-bold text-gray-900">Vibe Coding & Agents</h2>
                 </div>
-                <div class="mt-6 text-right text-sm text-gray-500 dark:text-gray-400">Source: Réseaux sociaux tech</div>
+                <p class="text-gray-600 text-lg mb-4">
+                    Tendances et innovations dans le développement assisté par IA et les systèmes d'agents.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                    <li><strong class="text-blue-600">LinkedIn:</strong> Partages d'expériences sur les copilotes de code avancés et l'optimisation.</li>
+                    <li><strong class="text-blue-600">X (Twitter):</strong> Discussions virales sur les frameworks d'agents IA et les démonstrations autonomes.</li>
+                    <li><strong class="text-blue-600">Communauté Dev:</strong> Impact de l'IA sur l'apprentissage, la productivité et la créativité des développeurs.</li>
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500">
+                    <p>Sources principales: LinkedIn, X (anciennement Twitter)</p>
+                    <p>Dernière veille: 07/03/2026</p>
+                </div>
             </div>
 
-            <!-- Neo-Card 3: HuggingFace - Modèles GLM-4.7 -->
-            <div class="bg-white dark:bg-gray-800 shadow-[8px_8px_16px_rgba(0,0,0,0.05),-8px_-8px_16px_rgba(255,255,255,0.8)] dark:shadow-[8px_8px_16px_#1a202c,-8px_-8px_16px_#2c323e] rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-200">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
-                        <span class="mr-3 text-green-500 dark:text-green-400">🧠</span> HuggingFace: Modèles GLM-4.7
-                    </h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
-                        Actualités et benchmarks sur la plateforme <strong class="font-semibold">HuggingFace</strong> concernant les derniers modèles de la série GLM-4.7.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-2">
-                        <li>Performances améliorées en multilingue.</li>
-                        <li>Optimisations pour les déploiements edge.</li>
-                        <li>Comparaison avec les modèles concurrents (GPT, Llama).</li>
-                        <li>Nouvelles fonctionnalités de fine-tuning.</li>
-                    </ul>
+            <!-- Neo-Card 3: Modèles GLM-4.7 & Marché -->
+            <div class="neo-card bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:border-purple-200 border border-transparent">
+                <div class="flex items-center mb-4">
+                    <span class="text-3xl mr-3 text-purple-500">🚀</span>
+                    <h2 class="text-2xl font-bold text-gray-900">Modèles & Marché IA</h2>
                 </div>
-                <div class="mt-6 text-right text-sm text-gray-500 dark:text-gray-400">Plateforme: HuggingFace</div>
+                <p class="text-gray-600 text-lg mb-4">
+                    Analyse des dernières innovations en modèles d'IA et l'économie des géants du secteur.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                    <li><strong class="text-purple-600">HuggingFace:</strong> Évaluations, adoptoin et critiques du modèle GLM-4.7.</li>
+                    <li><strong class="text-purple-600">NVIDIA:</strong> Performances boursières, roadmap des puces (Blackwell, etc.) et stratégies datacenter.</li>
+                    <li><strong class="text-purple-600">Alphabet & Meta:</strong> Avancées en recherche (Gemini Ultra, Llama X), nouveaux produits et positionnement stratégique.</li>
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500">
+                    <p>Sources principales: HuggingFace, Analyses Marché (NVIDIA, Alphabet, Meta)</p>
+                    <p>Dernière veille: 09/03/2026</p>
+                </div>
             </div>
-
         </div>
+    </main>
 
-        <!-- Section Marché -->
-        <section class="mt-12">
-            <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">Marché: Gafam & Semiconducteurs</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- Market Card: NVIDIA -->
-                <div class="bg-white dark:bg-gray-800 shadow-[4px_4px_8px_rgba(0,0,0,0.03),-4px_-4px_8px_rgba(255,255,255,0.7)] dark:shadow-[4px_4px_8px_#1a202c,-4px_-4px_8px_#2c323e] rounded-xl p-5 hover:scale-[1.01] transition-transform duration-200">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
-                        <span class="mr-2 text-green-600 dark:text-green-400">📈</span> NVIDIA
-                    </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm">
-                        Leader incontesté des puces IA, continue sa croissance exponentielle. Demande forte pour les GPUs H100/B200.
-                    </p>
-                    <div class="mt-3 text-sm flex justify-between items-center">
-                        <span class="text-green-600 dark:text-green-400 font-bold">$1250.75 <span class="text-xs ml-1">(+1.8%)</span></span>
-                        <span class="text-gray-500 dark:text-gray-400">YTD: +45%</span>
-                    </div>
-                </div>
-
-                <!-- Market Card: Alphabet (Google) -->
-                <div class="bg-white dark:bg-gray-800 shadow-[4px_4px_8px_rgba(0,0,0,0.03),-4px_-4px_8px_rgba(255,255,255,0.7)] dark:shadow-[4px_4px_8px_#1a202c,-4px_-4px_8px_#2c323e] rounded-xl p-5 hover:scale-[1.01] transition-transform duration-200">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
-                        <span class="mr-2 text-red-600 dark:text-red-400">📉</span> Alphabet (Google)
-                    </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm">
-                        Développement de Gemini et intégration IA dans leurs services. Concurrence accrue sur le cloud IA.
-                    </p>
-                    <div class="mt-3 text-sm flex justify-between items-center">
-                        <span class="text-red-600 dark:text-red-400 font-bold">$178.10 <span class="text-xs ml-1">(-0.5%)</span></span>
-                        <span class="text-gray-500 dark:text-gray-400">YTD: +12%</span>
-                    </div>
-                </div>
-
-                <!-- Market Card: Meta Platforms -->
-                <div class="bg-white dark:bg-gray-800 shadow-[4px_4px_8px_rgba(0,0,0,0.03),-4px_-4px_8px_rgba(255,255,255,0.7)] dark:shadow-[4px_4px_8px_#1a202c,-4px_-4px_8px_#2c323e] rounded-xl p-5 hover:scale-[1.01] transition-transform duration-200">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center">
-                        <span class="mr-2 text-green-600 dark:text-green-400">📈</span> Meta Platforms
-                    </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm">
-                        Investissements massifs dans l'IA pour le métavers et leurs plateformes sociales (Llama 3).
-                    </p>
-                    <div class="mt-3 text-sm flex justify-between items-center">
-                        <span class="text-green-600 dark:text-green-400 font-bold">$510.40 <span class="text-xs ml-1">(+0.9%)</span></span>
-                        <span class="text-gray-500 dark:text-gray-400">YTD: +28%</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </div>
-</main>
+    <footer class="mt-16 text-center text-gray-500 text-sm">
+        <p>Ce tableau de bord est une synthèse des données de veille IA au 09/03/2026.</p>
+        <p class="mt-1">Propulsé par les dernières tendances en IA et design.</p>
+    </footer>
+</div>
     </main>
 </body></html>
